@@ -141,7 +141,7 @@ The DD3D models pre-trained on dense depth estimation using DDAD15M can be downl
 | V2-99 | [model](https://tri-ml-public.s3.amazonaws.com/github/dd3d/pretrained/depth_pretrained_v99-3jlw0p36-20210423_010520-model_final-remapped.pth) |
 | Omnimized | [model](https://tri-ml-public.s3.amazonaws.com/github/dd3d/pretrained/depth_pretrained_omninet-small-3nxjur71.pth) |
 
-The `Omnimized` models are high-efficiency architectures by [OmniML](https://www.omniml.ai/). `Omnimized` achieves 1.85x speedup (measured with NVIDIA Xavier, int8, batch_size=1), 60% less GFlops (measured with input size 512x896) with better performance compared to standard DLA-34. Please see th models section for configs.
+The `Omnimized` model is optimized by [OmniML](https://www.omniml.ai/) for highly efficient deployment on target hardware with better accuracy. The `Omnimized` model achieves 1.85x speedup (measured with NVIDIA Xavier, int8, batch_size=1), 60% less GFlops (measured with input size 512x896) with better performance compared to standard DLA-34. Please see the Models section for configs.
 
 #### (Optional) Eigen-clean subset of KITTI raw.
 To train our Pseudo-Lidar detector, we curated a new subset of KITTI (raw) dataset and use it to fine-tune its depth network. This subset can be downloaded [here](https://tri-ml-public.s3.amazonaws.com/github/dd3d/eigen_clean.txt). Each row contains left and right image pairs. The KITTI raw dataset can be download [here](http://www.cvlibs.net/datasets/kitti/raw_data.php).
