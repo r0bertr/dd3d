@@ -8,9 +8,9 @@ defaults:
 
 MODEL:
   # from-coco, IODA-pretrained.
-  backbonefpn: 
-  width_mult: 1.0
-  depth_mult: 1.0
+  backbone_with_fpn: 
+    width_mult: 1.0
+    depth_mult: 1.0
 
 CKPT: https://tri-ml-public.s3.amazonaws.com/github/dd3d/pretrained/depth_pretrained_omninet-small-3nxjur71.pth
 

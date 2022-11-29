@@ -139,9 +139,9 @@ The DD3D models pre-trained on dense depth estimation using DDAD15M can be downl
 | :---: | :---: |
 | DLA34 | [model](https://tri-ml-public.s3.amazonaws.com/github/dd3d/pretrained/depth_pretrained_dla34-2lnfuzr1.pth) |
 | V2-99 | [model](https://tri-ml-public.s3.amazonaws.com/github/dd3d/pretrained/depth_pretrained_v99-3jlw0p36-20210423_010520-model_final-remapped.pth) |
-| Omnimized | [model](https://tri-ml-public.s3.amazonaws.com/github/dd3d/pretrained/depth_pretrained_omninet-small-3nxjur71.pth) |
+| OmniML | [model](https://tri-ml-public.s3.amazonaws.com/github/dd3d/pretrained/depth_pretrained_omninet-small-3nxjur71.pth) |
 
-The `Omnimized` model is optimized by [OmniML](https://www.omniml.ai/) for highly efficient deployment on target hardware with better accuracy. The `Omnimized` model achieves 1.75x speedup (measured with NVIDIA Xavier, int8, batch_size=1), 60% less GFlops (measured with input size 512x896) with better performance compared to standard DLA-34. Please see the Models section for configs.
+The `OmniML` model is optimized by [OmniML](https://www.omniml.ai/) for highly efficient deployment on target hardware with better accuracy. The `OmniML` model achieves 1.75x speedup (measured with NVIDIA Xavier, int8, batch_size=1), 60% less GFlops (measured with input size 512x896) with better performance compared to standard DLA-34. Please see the Models section for configs.
 
 #### (Optional) Eigen-clean subset of KITTI raw.
 To train our Pseudo-Lidar detector, we curated a new subset of KITTI (raw) dataset and use it to fine-tune its depth network. This subset can be downloaded [here](https://tri-ml-public.s3.amazonaws.com/github/dd3d/eigen_clean.txt). Each row contains left and right image pairs. The KITTI raw dataset can be download [here](http://www.cvlibs.net/datasets/kitti/raw_data.php).
@@ -195,14 +195,15 @@ If you have insufficient GPU memory for any experiment, you can use [gradient ac
 ## Models
 All DLA-34 and V2-99 experiments here use 8 A100 40G GPUs, and use gradient accumulation when more GPU memory is needed. We subsample nuScenes validation set by a factor of 8 (2Hz ⟶ 0.25Hz) to save training time.
 
-(*): Benchmarked using 8 A5000 GPUs.
+(*): Trained using 8 A5000 GPUs.
+(**): Benchmarked on NVIDIA Xavier.
 
 ### KITTI
 | experiment | backbone | train mem. (GB) | train time (hr) | GFLOPs | latency (ms) | train log |  Box AP (%) | BEV AP (%) | download |
 | :---: | :--: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |  :---: | 
-| [config](configs/experiments/dd3d_kitti_dla34.yaml) | DLA-34 | 256 | 4.5 | 103* | 19.9* | [log](https://tri-ml-public.s3.amazonaws.com/github/dd3d/experiments/26675chm-20210826_083148/logs/log.txt) | 16.92 |  24.77 | [model](https://tri-ml-public.s3.amazonaws.com/github/dd3d/experiments/26675chm-20210826_083148/model_final.pth) |
-| [config](configs/experiments/dd3d_kitti_v99.yaml) | V2-99 | 400 | 9.0 | 453* | - | [log](https://tri-ml-public.s3.amazonaws.com/github/dd3d/experiments/4elbgev2-20210825_201852/logs/log.txt) | 23.90 |  32.01 | [model](https://tri-ml-public.s3.amazonaws.com/github/dd3d/experiments/4elbgev2-20210825_201852/model_final.pth) |
-| [config](configs/experiments/dd3d_kitti_omninets.yml) | Omnimized | 70* | 3.0* | 41* | 11.4* | [log](https://tri-ml-public.s3.amazonaws.com/github/dd3d/experiments/DD3D-omnimized-kitti-log.txt) | 20.58 |  28.73 | [model](https://tri-ml-public.s3.amazonaws.com/github/dd3d/experiments/DD3D-omnimized-kitti.pth) |
+| [config](configs/experiments/dd3d_kitti_dla34.yaml) | DLA-34 | 256 | 4.5 | 103 | 19.9** | [log](https://tri-ml-public.s3.amazonaws.com/github/dd3d/experiments/26675chm-20210826_083148/logs/log.txt) | 16.92 |  24.77 | [model](https://tri-ml-public.s3.amazonaws.com/github/dd3d/experiments/26675chm-20210826_083148/model_final.pth) |
+| [config](configs/experiments/dd3d_kitti_v99.yaml) | V2-99 | 400 | 9.0 | 453 | - | [log](https://tri-ml-public.s3.amazonaws.com/github/dd3d/experiments/4elbgev2-20210825_201852/logs/log.txt) | 23.90 |  32.01 | [model](https://tri-ml-public.s3.amazonaws.com/github/dd3d/experiments/4elbgev2-20210825_201852/model_final.pth) |
+| [config](configs/experiments/dd3d_kitti_omninets.yaml) | OmniML | 70* | 3.0* | 41 | 11.4** | [log](https://tri-ml-public.s3.amazonaws.com/github/dd3d/experiments/DD3D-OmniML-kitti-log.txt) | 20.58 |  28.73 | [model](https://tri-ml-public.s3.amazonaws.com/github/dd3d/experiments/DD3D-OmniML-kitti.pth) |
 
 ### nuScenes
 | experiment | backbone | train mem. (GB) | train time (hr) | train log | mAP (%) | NDS | download |
