@@ -17,6 +17,7 @@ _ext
 *.so
 build/
 dist/
+*.egg-info
 
 # pytorch/python/numpy formats
 *.pth
